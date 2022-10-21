@@ -16,4 +16,4 @@ class Solution(object):
             else:
                 j -= 1
 
-        return water
+        return 
