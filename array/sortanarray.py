@@ -13,36 +13,44 @@ class Solution(object):
         :rtype: List[int]
         """
         if len(nums) > 1:
-            #  r is the point where the array is divided into two subarrays
-            r = len(nums)//2
-            L = nums[:r]
-            M = nums[r:]
+            #  mid is the point where the array is divided into two subarrays
+            mid = len(nums)//2
+            left = nums[:mid]
+            right = nums[mid:]
 
-            # Sort the two halves
-            self.mergeSort(L)
-            self.mergeSort(M)
-
+            # Sort the two halves (need to call this recursively so that left and right are sorted independently
+            # before the while-if-else loop starts to add the elements back together as we will be
+            # comparing the element's size which will not work if left and right are not sorted)
+            self.mergeSort(left)
+            self.mergeSort(right)
+            # i is pointer for left, j is pointer for right, k is pointer for nums
             i = j = k = 0
 
-            # Until we reach either end of either L or M, pick larger among
-            # elements L and M and place them in the correct position at A[p..r]
-            while i < len(L) and j < len(M):
-                if L[i] <= M[j]:
-                    nums[k] = L[i]
+            # Until we reach either end of either left or right, pick the larger of the
+            # elements in left and right and place them in the correct position at nums[k]
+            while i < len(left) and j < len(right):
+                # Choosing the lower of the two elements
+                if left[i] <= right[j]:
+                    # If left[i] is lower, assign it to nums[k]
+                    nums[k] = left[i]
+                    # Increase pointer for left while keeping pointer for right still
                     i += 1
                 else:
-                    nums[k] = M[j]
+                    # If right[i] is lower, assign it to nums[k]
+                    nums[k] = right[j]
+                    # Increase pointer for right while keeping pointer for left still
                     j += 1
+                # Increase pointer for nums
                 k += 1
-
-            # When we run out of elements in either L or M,
-            # pick up the remaining elements and put in A[p..r]
-            while i < len(L):
-                nums[k] = L[i]
+            # Notice above while comparison is AND. Below is OR.
+            # We will eventually run of elements at the end of the loop except for the last element
+            # Do the same comparison individually.
+            while i < len(left):
+                nums[k] = left[i]
                 i += 1
                 k += 1
 
-            while j < len(M):
-                nums[k] = M[j]
+            while j < len(right):
+                nums[k] = right[j]
                 j += 1
                 k += 1
