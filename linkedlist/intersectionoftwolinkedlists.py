@@ -10,4 +10,13 @@ class Solution(object):
         :type head1, head1: ListNode
         :rtype: ListNode
         """
-        
+        # set a and b to start of list
+        a = headA
+        b = headB
+        # increment a and b while they are NOT equals to each other
+        while a != b:
+            # if a or b reaches end of list (null), set a to headB and b to headA (beginning of opposite list)
+            a = a.next if a else headB
+            b = b.next if b else headA
+        # when a and b are EQUAL, exit loop and return a or b (they intersected)
+        return a
