@@ -9,7 +9,7 @@
  * }
  */
 class Solution {
-    public ListNode reverseLinkedList(ListNode head) {
+    public ListNode ReverseLinkedList(ListNode head) {
         ListNode prev = null;
 
         while (head != null) {

@@ -1,5 +1,5 @@
 class Solution {
-    public int bestTimeToBuyAndSellStock(int[] prices) {
+    public int BestTimeToBuyAndSellStock(int[] prices) {
         int i = 0;
         int j = 0;
         int profit = 0;
