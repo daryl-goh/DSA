@@ -4,6 +4,59 @@
  * Given an array of integers arr, your task is to count the number of contiguous subarrays that represent a sawtooth sequence of at least two elements.
  */
 
+
+
+ /*
+    Tests passed: 16/16.
+    Sample tests:
+    8/8
+    Hidden tests:
+    8/8
+    Score:
+    500/500
+  */
+
+
+  long solution(int[] arr) {
+    //edge case
+    if (arr.length < 2)
+        return 0;
+    
+    //initialize variables
+    long counter = 0;
+    int streak = 0;
+    boolean prevIncreasing = false;
+    
+    //loop through array
+    for (int i = 0; i < arr.length-1; i++) {
+        //if current element is equal to next element, reset streak and prevIncreasing
+        if (arr[i] == arr[i+1]){
+            prevIncreasing = false;
+            streak = 0;    
+        } else {
+            //check if current element is increasing or decreasing
+            boolean currIncreasing = arr[i] < arr[i+1];
+            //if there is a flip in direction, increment streak and set prevIncreasing
+            if (currIncreasing != prevIncreasing){
+                streak++;
+                prevIncreasing = currIncreasing;
+            } else {
+                //otherwise, start a new streak
+                streak =1;
+            }
+        }
+        //increment counter by the value of streak
+        counter += streak;
+    }   
+    //return the final counter value
+    return counter;
+}
+
+
+
+
+
+
  
  /*
   * Tests passed: 8/16. Execution time limit exceeded on test 9: Program exceeded the execution time limit. Make sure that it completes execution in a few seconds for any possible input.
