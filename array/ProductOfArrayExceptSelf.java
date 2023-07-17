@@ -44,16 +44,24 @@ After the second loop, the result array becomes: result = [24, 12, 8, 6].
 
 Return the result array: [24, 12, 8, 6].
 
-The resulting array represents the product of all elements in the input array [1, 2, 3, 4] except for the element at each index. So, in this case, the code calculates [2*3*4, 1*3*4, 1*2*4, 1*2*3] = [24, 12, 8, 6].
+The resulting array represents the product of all elements in the input array [1, 2, 3, 4] except for the element at each index. 
+So, in this case, the code calculates [2*3*4, 1*3*4, 1*2*4, 1*2*3] = [24, 12, 8, 6].
 
 This approach avoids using division and achieves the desired result in linear time complexity.
 
 
 The reason for having two loops in the productExceptSelf method is to calculate the product of all elements except self for each element in the input array.
 
-The first loop is responsible for calculating the product of all elements to the left of each element. It iterates through the array from left to right and keeps track of the running product in the tmp variable. At each iteration, it stores the current running product (tmp) in the corresponding index of the result array and updates tmp by multiplying it with the current element. This way, after the first loop, each element in the result array holds the product of all elements to the left of itself.
+The first loop is responsible for calculating the product of all elements to the left of each element. 
+It iterates through the array from left to right and keeps track of the running product in the tmp variable. 
+At each iteration, it stores the current running product (tmp) in the corresponding index of the result array and updates tmp by multiplying it with the current element. 
+This way, after the first loop, each element in the result array holds the product of all elements to the left of itself.
 
-The second loop is responsible for calculating the product of all elements to the right of each element. It starts from the rightmost element and follows a similar approach as the first loop but in reverse. It multiplies the current element in the result array by the running product (tmp), which represents the product of all elements to the right of the current element. After each multiplication, it updates tmp by multiplying it with the current element. This way, after the second loop, each element in the result array holds the product of all elements to the left and right of itself, excluding itself.
+The second loop is responsible for calculating the product of all elements to the right of each element. 
+It starts from the rightmost element and follows a similar approach as the first loop but in reverse. 
+It multiplies the current element in the result array by the running product (tmp), which represents the product of all elements to the right of the current element. 
+After each multiplication, it updates tmp by multiplying it with the current element. 
+This way, after the second loop, each element in the result array holds the product of all elements to the left and right of itself, excluding itself.
 
 By having these two loops, we effectively calculate the product of all elements except self for each element in the input array and store the results in the result array.
  */
