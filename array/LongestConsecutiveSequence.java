@@ -1,3 +1,62 @@
+/*
+    O(n) solution using HashSet
+ */
+
+class Solution {
+    public int longestConsecutive(int[] nums) {
+
+        int finalcount = 0; // Variable to store the final count (length of the longest consecutive sequence)
+        Set<Integer> s = new HashSet<>(); // Set to store unique elements from the array
+
+        // Add all elements from the array to the set
+        for (int i : nums) {
+            s.add(i);
+        }
+
+        // Iterate through each element in the array
+        for (int i : nums) {
+            int prevVal = i - 1; // Previous value (to check for elements on the left side of the sequence)
+            int currentLength = 1; // Current length of the sequence (starting with one element, which is the current element itself)
+            int nextVal = i + 1; // Next value (to check for elements on the right side of the sequence)
+       
+            // Explore the left side of the sequence
+            while (s.contains(prevVal)) {
+                currentLength++; // Increase the sequence length
+                s.remove(prevVal--); // Remove the element from the set and decrement the previous value
+            }
+
+            // Explore the right side of the sequence
+            while (s.contains(nextVal)) {
+                currentLength++; // Increase the sequence length
+                s.remove(nextVal++); // Remove the element from the set and increment the next value
+            }
+
+            finalcount = Math.max(finalcount, currentLength); // Update the maximum length if necessary
+         }
+
+         return finalcount; // Return the length of the longest consecutive sequence
+    }
+}
+
+
+
+
+
+
+/*
+ ****************************************************************************************************************************************************************
+ */
+
+
+
+
+
+
+/*
+    O(n log n) solution using sorting
+ */
+
+
 class Solution {
     public int longestConsecutive(int[] nums) {
         // Check if the input array is empty
