@@ -1,57 +1,77 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
 
-        List<List<Integer>> numList = new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
 
-        // Set the constraints: if nothing in nums or length of nums < 3, return empty
-        // list
+        // Check constraints: if nums is null or has less than 3 elements, return empty list
         if (nums == null || nums.length < 3) {
-            return numList;
+            return res;
         }
 
-        // Sort the array
+        // Sort the array in ascending order
         Arrays.sort(nums);
 
-        for (int i = 0; i < nums.length - 2; i++) {
-            // Skip duplicate elements
-            if (i > 0 && nums[i] == nums[i - 1]) {
-                continue;
+        int main = 0;
+
+        // Iterate through the array with the main pointer
+        while (main < nums.length - 2) {
+            // Break the loop if the current main element is greater than 0 (refer to comments at bottom)
+            if (nums[main] > 0) {
+                break;
             }
 
             // Set the left and right pointers
-            int left = i + 1;
-            int right = nums.length - 1;
+            int low = main + 1;
+            int high = nums.length - 1;
 
-            while (left < right) {
-                // Check if the sum of the three elements is 0
-                int sum = nums[i] + nums[left] + nums[right];
+            // Start the two-pointer traversal
+            while (low < high) {
+                long sum = (long) (nums[main] + nums[low] + nums[high]);
 
-                // If sum == 0, add the elements to the list
+                // If the sum of the three elements is equal to 0, add them to the result list
                 if (sum == 0) {
-                    numList.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    res.add(Arrays.asList(nums[main], nums[low], nums[high]));
+                }
 
-                    // Increment left and decrement right pointers
-                    left++;
-                    right--;
+                // If the sum is less than or equal to 0, increment the low pointer (you need a larger sum)
+                if (sum <= 0) {
+                    // Skip duplicate elements
+                    while (low + 1 < high && nums[low] == nums[low + 1]) {
+                        low++;
+                    }
+                    low++;
+                }
 
-                    // After incremtn, if the left element is the same as the previous element, increment again
-                    while (left < right && nums[left] == nums[left - 1]) {
-                        left++;
+                // If the sum is greater than or equal to 0, decrement the high pointer (you need a smaller sum)
+                if (sum >= 0) {
+                    // Skip duplicate elements
+                    while (low < high - 1 && nums[high] == nums[high - 1]) {
+                        high--;
                     }
-                    // After decrement, if the right element is the same as the previous element, decrement again
-                    while (left < right && nums[right] == nums[right + 1]) {
-                        right--;
-                    }
-                // If the sum is less than 0, increment left pointer (array is sorted so this will increase the sum)
-                } else if (sum < 0) {
-                    left++;
-                // If the sum is greater than 0, decrement right pointer (array is sorted so this will decrease the sum)
-                } else {
-                    right--;
+                    high--;
                 }
             }
+
+            // Move the main pointer to the next non-duplicate element
+            while (main + 1 < nums.length - 2 && nums[main] == nums[main + 1]) {
+                main++;
+            }
+            main++;
         }
-        // Return the list of lists
-        return numList;
+        return res;
     }
 }
+
+
+
+/*
+ * 
+The code block if (nums[main] > 0) { break; } in line 19 is used to optimize the algorithm by skipping unnecessary iterations. 
+Since the array nums is sorted in ascending order, if the value of the main element is already greater than 0, it means that all the remaining elements in the array will also be greater than 0.
+
+In the context of the threeSum problem, the goal is to find triplets that sum up to zero. 
+If the main element is greater than 0, it implies that there cannot be any triplets that sum up to zero since adding positive numbers will not result in a sum of zero.
+
+Therefore, breaking out of the loop when nums[main] > 0 saves unnecessary iterations and improves the efficiency of the algorithm, especially when the array contains mostly positive numbers. 
+It avoids unnecessary computations for cases where there are no valid triplets, making the algorithm more efficient.
+ */
