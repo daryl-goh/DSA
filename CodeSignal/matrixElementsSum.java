@@ -1,5 +1,3 @@
-package CodeSignal;
-
 public class matrixElementsSum {
     
     int solution(int[][] matrix) {

@@ -1,5 +1,3 @@
-package leetcode.CodeSignal;
-
 public class adjacentElementsProduct {
 
     int solution(int[] inputArray) {

@@ -1,5 +1,3 @@
-package CodeSignal;
-
 public class almostIncreasingSequence {
     boolean solution(int[] sequence) {
     

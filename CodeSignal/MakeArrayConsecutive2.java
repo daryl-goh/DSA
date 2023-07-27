@@ -1,5 +1,3 @@
-package leetcode.CodeSignal;
-
 public class MakeArrayConsecutive2 {
 
     int solution(int[] statues) {

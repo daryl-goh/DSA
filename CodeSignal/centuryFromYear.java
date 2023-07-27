@@ -1,5 +1,3 @@
-package leetcode.CodeSignal;
-
 public class centuryFromYear {
     int solution(int year) {
     

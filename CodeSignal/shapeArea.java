@@ -1,5 +1,3 @@
-package leetcode.CodeSignal;
-
 public class shapeArea {
     int solution(int n) {
         // n = 1 : 1 

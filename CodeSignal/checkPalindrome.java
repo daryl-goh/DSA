@@ -1,5 +1,3 @@
-package leetcode.CodeSignal;
-
 public class checkPalindrome {
 
     boolean solution(String inputString) {
