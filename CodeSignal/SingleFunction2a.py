@@ -11,6 +11,7 @@ def solution(a, b, k):
     return count
 
 """
+Done in less than 20 minutes
 Tests passed: 16/16.
 Sample tests:
 8/8
