@@ -1,18 +1,3 @@
-# Define a function that adds an integer 'k' to each value in the input dictionary 'hmap'
-def addToValue(hmap, k):
-    for key, val in hmap.items():
-        hmap[key] += k
-    return hmap
-
-# Define a function that adds an integer 'k' to each key in the input dictionary 'hmap'
-def addToKey(hmap, k):
-    # The keys of a dictionary are immutable, which means they cannot be modified once they are created hence we need to create a new dictionary
-    newHmap = {}
-    for key, val in hmap.items():
-        newKey = key + k
-        newHmap[newKey] = val
-    return newHmap
-
 # Define a function that processes a list of queries and returns the final answer
 def solution(queryType, query):
     # Initialize a variable 'ans' to store the final result
