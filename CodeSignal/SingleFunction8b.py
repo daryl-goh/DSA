@@ -12,7 +12,7 @@ def solution(a, k):
         # Calculate the total number of ribbons that can be cut with the current mid length
         for ribbon_length in a:
             total_ribbons += ribbon_length // mid
-        
+            
         # Compare the total ribbons with the required number of ribbons (k)
         if total_ribbons >= k:
             # If the total ribbons are greater than or equal to k, update the left pointer
