@@ -9,16 +9,16 @@ class Solution(object):
         prev = None
         # Initialize curr pointer as the head
         curr = head
-        # Run a loop till curr points to NULL
+        # while curr is not null (Run a loop till curr points to NULL)
         while curr:
             # Initialize next pointer as next pointer of curr
-            next = curr.next
+            nxt = curr.next
             # Assign the prev pointer to curr's next pointer (REVERSE IT)
             curr.next = prev
             # Move prev to curr
             prev = curr
             # Move curr to next
-            curr = next
+            curr = nxt
             # Repeat process till curr points to null
         # Return prev (prev will be pointing to head of reverse linked)
         return prev 
