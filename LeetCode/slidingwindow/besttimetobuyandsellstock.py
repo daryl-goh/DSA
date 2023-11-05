@@ -15,3 +15,21 @@ class Solution(object):
                 i = j
             j += 1
         return profit
+    
+    
+"""
+Alternative Solution:
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+
+        res = 0
+        lowest = prices[0]
+        for p in prices:
+            if p < lowest:
+                lowest = p
+            else:
+                res = max(res, p - lowest)
+
+        return res
+"""
